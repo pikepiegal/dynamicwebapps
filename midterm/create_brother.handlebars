@@ -1,0 +1,23 @@
+{{#if message}}
+  <p style="background-color: red">{{message}}</p>
+{{/if}}
+
+<form action="/create" method="post">
+
+  <div>
+    <input type="text" placeholder="brother name" name="name" value="{{brother.name}}">
+  </div>
+
+  <div>
+    <input type="text" value="{{brother.zeta}}" placeholder="zeta" name="zeta">
+  </div>
+
+  <div>
+    <input type="text" placeholder="class" value="{{brother.class}}" name="class">
+  </div>
+
+
+  <div>
+    <input type="submit" value="CREATE THIS brother">
+  </div>
+</form>
