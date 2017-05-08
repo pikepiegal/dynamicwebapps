@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>LXA Chatroom Page</title>
+    <meta charset="utf-8"/>
+    <link href="styles.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <div id="nav">
+      <ul>
+        <li><a href="index">Home</a>
+          <ul>
+            <li><a href="minutes">LXA Minutes</a></li>
+            <li><a href="highzetareport">High Zeta Reports</a></li>
+          </ul>
+        </li>
+        <li><a href="calendar">Calendar</a></li>
+        <li><a href="fall2015">Gallery</a>
+          <ul>
+            <li><a href="#">Fall 2010</a></li>
+              <li><a href="#">Spring 2011</a></li>
+              <li><a href="#">Fall 2011</a></li>
+              <li><a href="#">Spring 2012</a></li>
+              <li><a href="#">Fall 2012</a></li>
+              <li><a href="#">Spring 2013</a></li>
+              <li><a href="#">Fall 2013</a></li>
+              <li><a href="#">Spring 2014</a></li>
+              <li><a href="#">Fall 2014</a></li>
+              <li><a href="#">Spring 2015</a></li>
+              <li><a href="fall2015">Fall 2015</a></li>
+          </ul>
+        </li>
+
+        <li><a href="actives">Roster</a>
+          <ul>
+              <li><a href="actives">Actives</a></li>
+              <li><a href="officers">Officers</a></li>
+              <li><a href="brothers">Brothers</a></li>
+          </ul>
+        </li>
+
+        <li><a href="chatroom">Chatroom</a></li>
+
+        <li class="right-side">
+          <a href="login">My Account</a>
+          <ul>
+            <li><a href="profile">Profile</a></li>
+            <li><a href="#">Sign Off</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div id="container">
+      <div id="chat-window"></div>
+
+      <form id="chat" action="">
+        <input type="text" placeholder="name" id="username" value="">
+        <input type="text" autocomplete="off" placeholder="message" id="message" value="">
+        <input type="submit" value="Send">
+      </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+    <script>
+      var socket = io.connect(window.location.origin);
+      function addToChat(data) {
+        var chat = document.querySelector('#chat-window');
+        var p = document.createElement('p');
+        p.innerHTML = data.username + ': ' + data.message;
+        chat.appendChild(p);
+        chat.scrollTop = chat.scrollHeight;
+      }
+      document.querySelector('#chat').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var data = {
+          username: document.querySelector('#username').value,
+          message: document.querySelector('#message').value
+        };
+        document.querySelector('#message').value = '';
+        document.querySelector('#message').focus();
+        console.log(data);
+        addToChat(data);
+        socket.emit('message', data);
+      });
+      socket.on('message', function(data) {
+        addToChat(data);
+      });
+    </script>
+
+    <div id="background"></div>
+
+		<div id="footer">
+			Theta Upsilon. In ZAX
+		</div>
+  </body>
+
+</html>

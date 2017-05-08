@@ -1,0 +1,92 @@
+
+<html>
+	<head>
+		<title>LXA Landing Page</title>
+		<meta charset="utf-8"/>
+		<link href="styles.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<div id="nav">
+	    <ul>
+	      <li><a href="index">Home</a>
+	        <ul>
+	          <li><a href="minutes">LXA Minutes</a></li>
+	          <li><a href="highzetareport">High Zeta Reports</a></li>
+	        </ul>
+	      </li>
+	      <li><a href="calendar">Calendar</a></li>
+	      <li><a href="fall2015">Gallery</a>
+	        <ul>
+	          <li><a href="#">Fall 2010</a></li>
+	            <li><a href="#">Spring 2011</a></li>
+	            <li><a href="#">Fall 2011</a></li>
+	            <li><a href="#">Spring 2012</a></li>
+	            <li><a href="#">Fall 2012</a></li>
+	            <li><a href="#">Spring 2013</a></li>
+	            <li><a href="#">Fall 2013</a></li>
+	            <li><a href="#">Spring 2014</a></li>
+	            <li><a href="#">Fall 2014</a></li>
+	            <li><a href="#">Spring 2015</a></li>
+	            <li><a href="fall2015">Fall 2015</a></li>
+	        </ul>
+	      </li>
+
+	      <li><a href="actives">Roster</a>
+	        <ul>
+	            <li><a href="actives">Actives</a></li>
+	            <li><a href="officers">Officers</a></li>
+	            <li><a href="brothers">Brothers</a></li>
+	        </ul>
+	      </li>
+
+	      <li><a href="chatroom">Chatroom</a></li>
+
+	      <li class="right-side">
+	        <a href="login">My Account</a>
+	        <ul>
+	          <li><a href="profile">Profile</a></li>
+	          <li><a href="#">Sign Off</a></li>
+	        </ul>
+	      </li>
+	    </ul>
+	  </div>
+
+		<div class="table">
+			<table align="center">
+				<thead>
+				<tr>
+					<th>Brothers List</th>
+				</tr>
+						<tr>
+							<th>Zeta</th>
+							<th>Name</th>
+							<th>Status</th>
+							<th>Phone Number</th>
+							<th>E-mail</th>
+						</tr>
+				</thead>
+
+				<tbody>
+
+						{{#each results}}
+							<tr>
+								<td>{{this.zeta}}</td>
+								<td>{{this.name}}</td>
+								<td>{{this.status}}</td>
+								<td>{{this.phonenumber}}</td>
+								<td>{{this.email}}</td>
+							</tr>
+						{{/each}}
+
+				</tbody>
+			</table>
+		</div>
+
+		<div id="background"></div>
+
+		<div id="footer">
+			Theta Upsilon. In ZAX
+		</div>
+	</body>
+</html>
