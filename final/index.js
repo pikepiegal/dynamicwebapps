@@ -121,6 +121,8 @@ app.post('/create', function(req, res) {
     status: req.body.status.trim(),
     phonenumber: req.body.phonenumber.trim(),
     email: req.body.email.trim(),
+    username: req.body.username.trim(),
+    pass: req.body.pass.trim(),
   };
 
   if (brother.name != '' && brother.zeta != '') {
@@ -138,7 +140,7 @@ var auth = function (req, res, next) {
     return res.send(401);
   };
 
-var user = basicAuth(req);
+  var user = basicAuth(req);
 
   if (!user || !user.name || !user.pass) {
     return unauthorized(res);
@@ -160,16 +162,13 @@ app.get('/login', auth, function (req, res) {
   res.send(200, 'Authenticated');
 });
 
+app.post('/login', auth,
+  function(req, res) {
+    // If this function gets called, authentication was successful.
+    // `req.user` contains the authenticated user.
+    res.redirect('/index');
+});
 
-
-// app.post('/login',
-//   passport.authenticate('local'),
-//   function(req, res) {
-//     // If this function gets called, authentication was successful.
-//     // `req.user` contains the authenticated user.
-//     res.redirect('/users/' + req.user.username);
-//   });
-//
 //
 // //redirect after authenticating connection
 // app.post('/login',
@@ -193,11 +192,8 @@ app.get('/login', auth, function (req, res) {
 // ));
 //
 // app.configure(function() {
-//   app.use(express.static('public'));
 //   app.use(express.cookieParser());
 //   app.use(express.bodyParser());
-//   app.use(express.session({ secret: 'keyboard cat' }));
-//   app.use(passport.initialize());
-//   app.use(passport.session());
+//
 //   app.use(app.router);
 // });

@@ -307,13 +307,21 @@ iframe {
    transform: translate(-50%, -50%);
 }
 
+form {
+  position: fixed;
+  /*width: 30%;
+  margin: 0 auto;*/
+  /*padding-top: 100px;*/
+  margin: 0 auto;
+}
+
 #chat {
   padding: 50px;
 }
 
 #container {
   position: relative;
-  width: 30%;
+  width: 40%;
   margin: 0 auto;
   padding-top: 100px;
 }
